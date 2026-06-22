@@ -139,11 +139,11 @@ st.metric(
 
 import google.generativeai as genai
 
-genai.configure(api_key="GOOGLE_API_KEY")
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 if st.button("Analyze Resume with AI"):
 
-    model_gemini = genai.GenerativeModel("gemini-2.5-flash")
+    model_gemini = genai.GenerativeModel("gemini-1.5-flash")
 
     prompt = f"""
     Analyze this resume.
@@ -211,10 +211,10 @@ prompt_questions = f"""
 Generate 10 interview questions for {predicted_role[0]}
 """
 import google.generativeai as genai
+import streamlit as st
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
-genai.configure(api_key="GOOGLE_API_KEY")
-
-model_gemini = genai.GenerativeModel("gemini-2.5-flash")
+model_gemini = genai.GenerativeModel("gemini-1.5-flash")
 
 questions = model_gemini.generate_content(prompt_questions)
 
